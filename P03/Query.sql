@@ -1,0 +1,10 @@
+DROP TRIGGER IF EXISTS insertstock;
+DELIMITER $$
+CREATE TRIGGER insertstock
+BEFORE INSERT ON barang
+FOR EACH ROW
+BEGIN
+SET NEW.stock = NEW.stock + 2;
+END;
+$$
+DELIMITER;

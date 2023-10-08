@@ -1,0 +1,9 @@
+DROP TRIGGER IF EXISTS edit_mhs;
+DELIMITER &&
+CREATE TRIGGER edit_mhs AFTER UPDATE ON t_mhs
+FOR EACH ROW
+BEGIN
+	INSERT INTO log_t_mhs VALUES(NULL,OLD.nama,OLD.nim,OLD.jurusan,OLD.tgl_masuk,NOW());
+END;
+&&
+DELIMITER;
